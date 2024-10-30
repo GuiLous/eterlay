@@ -3,16 +3,17 @@ require "ostruct"
 class Admins::SignInService
   def initialize(params)
     @params = params
+    @context = @params[:context]
   end
 
   def call
-    admin = Admin.find_for_database_authentication(@params)
+    admin = Admin.find_for_database_authentication(email: @params[:email])
 
     return failure([ "Credenciais inválidas" ]) unless admin&.valid_password?(@params[:password])
 
     token = admin.generate_jwt
 
-    context[:current_user] = admin
+    @context[:current_user] = admin
 
     success(token)
   rescue StandardError => e

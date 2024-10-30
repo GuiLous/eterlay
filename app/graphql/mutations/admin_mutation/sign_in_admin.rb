@@ -8,7 +8,7 @@ module Mutations
       field :errors, [ String ], null: true
 
       def resolve(email:, password:)
-        result = Admins::SignInService.new(email:, password:).call
+        result = Admins::SignInService.new(email:, password:, context:).call
 
         { token: result.token, errors: result.errors }
       end
