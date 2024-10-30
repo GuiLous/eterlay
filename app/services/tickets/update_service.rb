@@ -1,4 +1,4 @@
-class Tickets::DeleteService
+class Tickets::UpdateService
   def initialize(params)
     @params = params
   end
@@ -6,7 +6,9 @@ class Tickets::DeleteService
   def call
     ticket = Ticket.find(@params[:id])
 
-    return failure(ticket.errors.full_messages) unless ticket.destroy
+    update_params = @params.compact_blank
+
+    return failure(ticket.errors.full_messages) unless ticket.update(update_params)
 
     success(ticket)
   rescue StandardError => e
@@ -17,14 +19,14 @@ class Tickets::DeleteService
 
   def success(ticket)
     OpenStruct.new(
-      deleted_id: ticket.id,
+      updated_id: ticket.id,
       errors: []
     )
   end
 
   def failure(errors)
     OpenStruct.new(
-      deleted_id: nil,
+      updated_id: nil,
       errors: errors
     )
   end

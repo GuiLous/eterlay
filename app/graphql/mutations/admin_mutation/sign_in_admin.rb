@@ -1,8 +1,8 @@
 module Mutations
   module AdminMutation
     class SignInAdmin < BaseMutation
-      argument :email, String, required: true
-      argument :password, String, required: true
+      argument :email, String
+      argument :password, String
 
       field :token, String, null: true
       field :errors, [ String ], null: true

@@ -1,12 +1,12 @@
 module Mutations
   module AdminMutation
     class CreateAdmin < BaseMutation
-      argument :email, String, required: true
-      argument :password, String, required: true
-      argument :password_confirmation, String, required: true
-      argument :first_name, String, required: true
-      argument :last_name, String, required: true
-      argument :phone_number, String, required: true
+      argument :email, String
+      argument :password, String
+      argument :password_confirmation, String
+      argument :first_name, String
+      argument :last_name, String
+      argument :phone_number, String
 
       field :admin, Types::Admin::AdminType, null: true
       field :errors, [ String ], null: true

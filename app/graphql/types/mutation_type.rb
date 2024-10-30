@@ -9,5 +9,6 @@ module Types
     # Ticket Mutations
     field :create_ticket, mutation: Mutations::TicketMutation::CreateTicket
     field :delete_ticket, mutation: Mutations::TicketMutation::DeleteTicket
+    field :update_ticket, mutation: Mutations::TicketMutation::UpdateTicket
   end
 end

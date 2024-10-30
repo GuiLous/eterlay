@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   post "/graphql", to: "graphql#execute"
 
+  post "/tickets/webhooks/orders_paid", to: "ticket_webhook#orders_paid"
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
