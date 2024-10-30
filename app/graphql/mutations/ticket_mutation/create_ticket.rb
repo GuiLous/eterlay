@@ -13,24 +13,13 @@ module Mutations
       def resolve(name:, description:, qr_code_image:)
         authenticate_user!
 
-        ticket = Ticket.new(
-          name: name,
-          description: description
-        )
+        result = Tickets::CreateService.new(
+          name:,
+          description:,
+          qr_code_image:,
+        ).call
 
-        blob = ActiveStorage::Blob.create_and_upload!(
-          io: qr_code_image,
-          filename: qr_code_image.original_filename,
-          content_type: qr_code_image.content_type
-        )
-
-        ticket.qr_code_image.attach(blob)
-
-        return { ticket: nil, errors: ticket.errors.full_messages } unless ticket.save
-
-        { ticket: ticket, errors: [] }
-      rescue StandardError => e
-        { ticket: nil, errors: [ "An unexpected error occurred: #{e.message}" ] }
+        { ticket: result.ticket, errors: result.errors }
       end
     end
   end
