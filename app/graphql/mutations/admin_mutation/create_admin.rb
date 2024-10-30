@@ -12,13 +12,16 @@ module Mutations
       field :errors, [ String ], null: true
 
       def resolve(email:, password:, password_confirmation:, first_name:, last_name:, phone_number:)
-        admin = Admin.new(email:, password:, password_confirmation:, first_name:, last_name:, phone_number:)
+        result = Admins::CreateService.new(
+          email:,
+          password:,
+          password_confirmation:,
+          first_name:,
+          last_name:,
+          phone_number:
+        ).call
 
-        return { admin: nil, errors: admin.errors.full_messages } unless admin.save
-
-        { admin: admin, errors: [] }
-      rescue StandardError => e
-        { admin: nil, errors: [ "An unexpected error occurred: #{e.message}" ] }
+        { admin: result.admin, errors: result.errors }
       end
     end
   end

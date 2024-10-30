@@ -17,5 +17,9 @@ module Eterlay
     config.api_only = true
     config.middleware.delete ActionView::Layouts
     config.middleware.delete ActionDispatch::Static
+    config.autoload_paths += %W[#{config.root}/app/services]
+    config.generators do |g|
+      g.template_engine nil
+    end
   end
 end

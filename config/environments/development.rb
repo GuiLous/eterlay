@@ -40,8 +40,6 @@ Rails.application.configure do
 
   config.active_job.verbose_enqueue_logs = true
 
-  config.assets.quiet = true
-
   config.action_view.annotate_rendered_view_with_filenames = true
 
   config.action_controller.raise_on_missing_callback_actions = true
