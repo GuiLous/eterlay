@@ -8,6 +8,15 @@ class Admin < ApplicationRecord
   validates :phone_number, presence: { message: "Número de telefone é obrigatório" }, uniqueness: { message: "Número de telefone já está em uso" }
 
   def generate_jwt
-    JWT.encode({ id: id, exp: 60.days.from_now.to_i }, Rails.application.credentials.secret_key_base)
+    JWT.encode({
+        id: id,
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        phone_number: phone_number,
+        exp: 60.days.from_now.to_i
+      },
+      Rails.application.credentials.secret_key_base
+    )
   end
 end
