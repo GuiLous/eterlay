@@ -34,7 +34,8 @@ class TicketWebhookController < ApplicationController
     ActiveRecord::Base.transaction do
       order_data["line_items"].each do |item|
         order_item = build_order_item(order_data, item)
-        create_order_item(order_item)
+        created_item = create_order_item(order_item)
+        OrderMailer.order_confirmation(created_item).deliver_now
       end
     end
   end
@@ -54,8 +55,14 @@ class TicketWebhookController < ApplicationController
   end
 
   def create_order_item(order_data)
-    ShopifyOrderItem.create!(order_data)
+    order_item = ShopifyOrderItem.create!(order_data)
+
+    TicketCode.create!(shopify_order_item: order_item)
+
+    order_item.reload
   end
+
+
 
   def extract_customer_name(customer)
     return nil if customer.blank?

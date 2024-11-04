@@ -1,4 +1,6 @@
 class ShopifyOrderItem < ApplicationRecord
+  has_one :ticket_code
+
   validates :order_id, presence: true, uniqueness: true
   validates :product_id, presence: true
   validates :title, presence: true
