@@ -5,21 +5,26 @@ module Mutations
 
       argument :name, String
       argument :description, String, required: false
-      argument :qr_code_image, ApolloUploadServer::Upload
+      argument :city, String
+      argument :state, String
+      argument :location, String
+      argument :date, GraphQL::Types::ISO8601DateTime
+      argument :footer_description, String, required: false
 
       field :ticket, Types::Ticket::TicketType
       field :errors, [ String ], null: false
 
-      def resolve(name:, description:, qr_code_image:)
-        puts "name: #{name}"
-        puts "description: #{description}"
-        puts "qr_code_image: #{qr_code_image}"
+      def resolve(name:, description:, city:, state:, location:, date:, footer_description:)
         authenticate_user!
 
         result = Tickets::CreateService.new(
           name:,
           description:,
-          qr_code_image:,
+          city:,
+          state:,
+          location:,
+          date:,
+          footer_description:,
         ).call
 
         { ticket: result.ticket, errors: result.errors }

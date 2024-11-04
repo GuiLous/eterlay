@@ -3,12 +3,12 @@ module Types
     class TicketType < Types::BaseObject
       field :id, ID, null: false
       field :name, String, null: false
-      field :description, String, null: true
-      field :qr_code_image_url, String, null: false
-
-      def qr_code_image_url
-        Rails.application.routes.url_helpers.rails_blob_path(object.qr_code_image, only_path: true) if object.qr_code_image.attached?
-      end
+      field :description, String
+      field :city, String,  null: false
+      field :state, String,  null: false
+      field :location, String,  null: false
+      field :date, GraphQL::Types::ISO8601DateTime,  null: false
+      field :footer_description, String,  null: false
     end
   end
 end

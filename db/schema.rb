@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_140424) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_222555) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -98,6 +98,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_140424) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "state"
+    t.string "location"
+    t.datetime "date"
+    t.text "footer_description"
     t.index ["name"], name: "index_tickets_on_name", unique: true
   end
 

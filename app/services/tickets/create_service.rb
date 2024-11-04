@@ -8,16 +8,13 @@ class Tickets::CreateService
   def call
     ticket = Ticket.new(
       name: @params[:name],
-      description: @params[:description]
+      description: @params[:description],
+      city: @params[:city],
+      state: @params[:state],
+      location: @params[:location],
+      date: @params[:date],
+      footer_description: @params[:footer_description]
     )
-
-    blob = ActiveStorage::Blob.create_and_upload!(
-      io: @params[:qr_code_image],
-      filename: @params[:qr_code_image].original_filename,
-      content_type: @params[:qr_code_image].content_type
-    )
-
-    ticket.qr_code_image.attach(blob)
 
     return failure(ticket.errors.full_messages) unless ticket.save
 
