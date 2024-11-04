@@ -9,8 +9,6 @@ class OrderMailer < ApplicationMailer
     @customer_name = order_item.customer_name
     @ticket_code = order_item.ticket_code
 
-    puts "\n@ticket_code: #{@ticket_code.inspect}"
-
     if @ticket_code.present?
       begin
         qr_code_image = generate_qr_code_image(@ticket_code.uuid)
@@ -19,7 +17,6 @@ class OrderMailer < ApplicationMailer
           content: qr_code_image.to_blob
         }
       rescue => e
-        puts "\nErro ao gerar ou anexar QR Code: #{e.message}"
         puts e.backtrace
       end
     end
@@ -33,9 +30,7 @@ class OrderMailer < ApplicationMailer
   private
 
   def generate_qr_code_image(uuid)
-    puts "Aquii 2"
     qrcode = RQRCode::QRCode.new(uuid)
-    puts "Aquii 3"
     png = qrcode.as_png(
       bit_depth: 1,
       border_modules: 4,
@@ -45,13 +40,9 @@ class OrderMailer < ApplicationMailer
       module_px_size: 6,
       size: 120
     )
-    puts "Aquii 4"
 
     image = MiniMagick::Image.read(StringIO.new(png.to_s))
-    puts "Aquii 5"
     image.format "png"
-    puts "Aquii 6"
-
     image
   end
 end
