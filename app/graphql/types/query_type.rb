@@ -7,5 +7,7 @@ module Types
 
     field :ticket, resolver: Resolvers::TicketResolver::FindTicket
     field :tickets, resolver: Resolvers::TicketResolver::FindAllTickets
+
+    field :order_items, resolver: Resolvers::OrderItemResolver::FindAllOrderItems
   end
 end
