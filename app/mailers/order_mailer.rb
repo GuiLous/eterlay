@@ -8,6 +8,7 @@ class OrderMailer < ApplicationMailer
     @customer_email = order_item.customer_email
     @customer_name = order_item.customer_name
     @ticket_code = order_item.ticket_code
+    @ticket = Ticket.find_by(name: order_item.title)
 
     if @ticket_code.present?
       begin
@@ -38,7 +39,7 @@ class OrderMailer < ApplicationMailer
       color: "black",
       fill: "white",
       module_px_size: 6,
-      size: 120
+      size: 420
     )
 
     image = MiniMagick::Image.read(StringIO.new(png.to_s))

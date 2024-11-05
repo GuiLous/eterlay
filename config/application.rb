@@ -14,9 +14,9 @@ module Eterlay
     ]
     config.load_defaults 7.2
     config.autoload_lib(ignore: %w[assets tasks])
-    config.api_only = true
-    config.middleware.delete ActionView::Layouts
-    config.middleware.delete ActionDispatch::Static
+    config.api_only = false
+    config.public_file_server.enabled = true
+    config.debug_exception_response_format = :api
     config.autoload_paths += %W[#{config.root}/app/services]
     config.generators do |g|
       g.template_engine nil

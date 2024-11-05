@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "rqrcode"
 gem "mini_magick"
 gem "chunky_png"
+gem "sprockets-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

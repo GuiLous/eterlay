@@ -316,6 +316,13 @@ GEM
       thor (~> 1.0)
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
+    sprockets (4.2.1)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.5.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      sprockets (>= 3.0.0)
     sqlite3 (2.1.0-aarch64-linux-gnu)
     sqlite3 (2.1.0-aarch64-linux-musl)
     sqlite3 (2.1.0-arm-linux-gnu)
@@ -398,6 +405,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   selenium-webdriver
   solargraph
+  sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails
   turbo-rails
