@@ -8,5 +8,4 @@ class ShopifyOrderItem < ApplicationRecord
   validates :price, presence: true
   validates :customer_email, presence: true
   validates :customer_name, presence: true
-  validates :customer_phone
 end

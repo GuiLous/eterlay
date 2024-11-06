@@ -6,6 +6,8 @@ class TicketCodes::UpdateService
   def call
     ticket_code = TicketCode.find_by(uuid: @params[:uuid])
 
+    return failure([ "Ingresso não é mais válido!" ]) if ticket_code.used?
+
     return failure(ticket_code.errors.full_messages) unless ticket_code.update(used: true, used_at: Time.current)
 
     success(ticket_code)

@@ -8,6 +8,7 @@ module Types
       field :customer_email, String, null: false
       field :customer_name, String, null: false
       field :customer_phone, String
+      field :ticket_code, Types::TicketCode::TicketCodeType
     end
   end
 end
