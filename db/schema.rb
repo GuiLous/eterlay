@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2024_11_05_130448) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -84,7 +87,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_130448) do
 
   create_table "ticket_codes", force: :cascade do |t|
     t.string "uuid"
-    t.integer "shopify_order_item_id"
+    t.bigint "shopify_order_item_id"
     t.boolean "used", default: false
     t.datetime "used_at"
     t.datetime "created_at", null: false

@@ -17,6 +17,7 @@ gem "rqrcode"
 gem "mini_magick"
 gem "chunky_png"
 gem "sprockets-rails"
+gem "pg"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
