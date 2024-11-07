@@ -21,6 +21,7 @@ gem "chunky_png"
 gem "sprockets-rails"
 gem "imgkit"
 gem "pg"
+gem "httparty"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

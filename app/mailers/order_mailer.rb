@@ -1,6 +1,7 @@
 require "rqrcode"
 require "mini_magick"
 require "stringio"
+require "httparty"
 
 class OrderMailer < ApplicationMailer
   def order_confirmation(order_item)
@@ -25,29 +26,22 @@ class OrderMailer < ApplicationMailer
           locals: { qr_code_data_url: @qr_code_data_url }
         )
 
-        tmp_html_path = Rails.root.join("tmp", "ticket_template.html")
-        File.open(tmp_html_path, "w") { |file| file.write(html) }
+        auth = { username: "5d61ecbe-e27e-4a02-9889-2a2c44be219c", password: "64c88394-7617-4d9d-b836-08e5fa32b080" }
 
-        output_path = Rails.root.join("public", "ticket_image_#{@order_id}.png")
-        wkhtmltoimage_options = [
-          "--width 500",
-          "--height 600",
-          "--quality 40",
-          "--enable-local-file-access",
-          "--disable-smart-width",
-          "--no-stop-slow-scripts",
-          " --no-stop-slow-scripts"
-        ].join(" ")
+        # Use a service like HTML/CSS to Image API
+        response = HTTParty.post("https://hcti.io/v1/image", {
+          body: { html: html, width: 300, height: 400 },
+          basic_auth: auth
+        })
 
-        wkhtmltoimage_path = Rails.env.production? ? "/app/bin/wkhtmltoimage" : "wkhtmltoimage"
-        command = "#{wkhtmltoimage_path} #{wkhtmltoimage_options} #{tmp_html_path} #{output_path}"
-
-        system(command)
-
-        attachments["ingresso.png"] = File.read(output_path)
-
-        File.delete(tmp_html_path) if File.exist?(tmp_html_path)
-        File.delete(output_path) if File.exist?(output_path)
+        puts "response: " + response.body.inspect
+        if response.success?
+          image_url = response.parsed_response["url"]
+          image_data = HTTParty.get(image_url).body
+          attachments["ingresso.png"] = image_data
+        else
+          raise "Failed to generate image"
+        end
       rescue => e
         puts e.backtrace
       end
