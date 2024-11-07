@@ -35,8 +35,7 @@ class OrderMailer < ApplicationMailer
           "--quality 40",
           "--enable-local-file-access",
           "--disable-smart-width",
-          "--no-stop-slow-scripts",
-          "--disable-ssl"
+          "--no-stop-slow-scripts"
         ].join(" ")
 
         wkhtmltoimage_path = Rails.env.production? ? "/app/bin/wkhtmltoimage" : "wkhtmltoimage"
