@@ -25,7 +25,7 @@
       background-position: center;
       text-align: center;
       color: #333333;
-      max-width: 1344px;
+      width: 520px;
       padding: 23.52px 40.32px 16.8px;
       border-radius: 8px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -98,7 +98,7 @@
     <div class="content">
       <div class="title"><%= @ticket.name.upcase %></div>
       <div class="subtitle"><%= @ticket.description.upcase %></div>
-      <div class="date"><%=I18n.l(@ticket.date, format: "%d DE %B").upcase %></div>
+      <div class="date"><%=I18n.l(@ticket.date, format: "%d DE %b").upcase %></div>
       <div class="footer note"><%= @ticket.footer_description.upcase %></div>
     </div>
   </div>
