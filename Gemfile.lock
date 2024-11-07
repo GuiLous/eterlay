@@ -141,6 +141,7 @@ GEM
       fiber-storage
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    imgkit (1.6.3)
     importmap-rails (2.0.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -397,6 +398,7 @@ DEPENDENCIES
   dotenv-rails
   graphiql-rails
   graphql
+  imgkit
   importmap-rails
   mini_magick
   pg

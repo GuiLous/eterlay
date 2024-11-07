@@ -2,19 +2,6 @@ require "rqrcode"
 require "mini_magick"
 require "stringio"
 
-html = ApplicationController.render(
-  template: "tickets/image_template", # Caminho do template
-  layout: false,
-  assigns: {
-    order_item: @order_item,
-    customer_email: @customer_email,
-    customer_name: @customer_name,
-    ticket_code: @ticket_code,
-    ticket: @ticket
-  }
-)
-
-
 class OrderMailer < ApplicationMailer
   def order_confirmation(order_item)
     @order_item = order_item

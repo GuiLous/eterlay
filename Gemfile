@@ -19,6 +19,7 @@ gem "rqrcode"
 gem "mini_magick"
 gem "chunky_png"
 gem "sprockets-rails"
+gem "imgkit"
 gem "pg"
 
 group :development, :test do
