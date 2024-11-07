@@ -1,7 +1,7 @@
 module Mutations
   module TicketMutation
     class UpdateTicket < BaseMutation
-      include ::Authenticatable
+      # include ::Authenticatable
 
       argument :id, ID
       argument :name, String, required: false
@@ -12,7 +12,7 @@ module Mutations
       field :errors, [ String ], null: false
 
       def resolve(**attributes)
-        authenticate_user!
+        # authenticate_user!
 
         result = Tickets::UpdateService.new(**attributes).call
 

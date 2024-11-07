@@ -1,12 +1,12 @@
 module Resolvers
   module AdminResolver
     class FindAllAdmins < BaseResolver
-      include ::Authenticatable
+      # include ::Authenticatable
 
       type [ Types::Admin::AdminType ], null: true
 
       def resolve
-        authenticate_user!
+        # authenticate_user!
 
         Admin.all
       end

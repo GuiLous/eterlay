@@ -1,7 +1,7 @@
 module Mutations
   module TicketMutation
     class CreateTicket < BaseMutation
-      include ::Authenticatable
+      # include ::Authenticatable
 
       argument :name, String
       argument :description, String, required: false
@@ -15,7 +15,7 @@ module Mutations
       field :errors, [ String ], null: false
 
       def resolve(name:, description:, city:, state:, location:, date:, footer_description:)
-        authenticate_user!
+        # authenticate_user!
 
         result = Tickets::CreateService.new(
           name:,

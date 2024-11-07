@@ -1,7 +1,7 @@
 module Mutations
   module TicketCodeMutation
     class UpdateTicketUsed < BaseMutation
-      include ::Authenticatable
+      # include ::Authenticatable
 
       argument :uuid, ID
 
@@ -9,7 +9,7 @@ module Mutations
       field :errors, [ String ], null: false
 
       def resolve(uuid:)
-        authenticate_user!
+        # authenticate_user!
 
         result = TicketCodes::UpdateService.new(uuid:).call
 

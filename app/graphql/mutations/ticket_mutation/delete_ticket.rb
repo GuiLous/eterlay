@@ -1,7 +1,7 @@
 module Mutations
   module TicketMutation
     class DeleteTicket < BaseMutation
-      include ::Authenticatable
+      # include ::Authenticatable
 
       argument :id, ID
 
@@ -9,7 +9,7 @@ module Mutations
       field :errors, [ String ], null: false
 
       def resolve(id:)
-        authenticate_user!
+        # authenticate_user!
 
         result = Tickets::DeleteService.new(id:).call
 
