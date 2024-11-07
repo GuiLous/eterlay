@@ -21,5 +21,6 @@ module Eterlay
     config.generators do |g|
       g.template_engine nil
     end
+    config.i18n.default_locale = :"pt-BR"
   end
 end

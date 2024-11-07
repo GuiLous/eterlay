@@ -28,13 +28,11 @@ class OrderMailer < ApplicationMailer
 
         auth = { username: "5d61ecbe-e27e-4a02-9889-2a2c44be219c", password: "64c88394-7617-4d9d-b836-08e5fa32b080" }
 
-        # Use a service like HTML/CSS to Image API
         response = HTTParty.post("https://hcti.io/v1/image", {
           body: { html: html, width: 300, height: 400 },
           basic_auth: auth
         })
 
-        puts "response: " + response.body.inspect
         if response.success?
           image_url = response.parsed_response["url"]
           image_data = HTTParty.get(image_url).body

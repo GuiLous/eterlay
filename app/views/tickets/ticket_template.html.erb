@@ -14,9 +14,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #f4f4f4;
       height: 100vh;
       margin: 0;
+      font-size: 1.4em;
     }
 
     .ticket {
@@ -25,17 +25,17 @@
       background-position: center;
       text-align: center;
       color: #333333;
-      max-width: 800px;
-      padding: 14px 24px 10px;
+      max-width: 1344px;
+      padding: 23.52px 40.32px 16.8px;
       border-radius: 8px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
-      height: 500px;
+      height: 840px;
     }
 
     .header, .footer {
-      font-size: 0.9rem;
+      font-size: 1.512rem;
       letter-spacing: 0.15em;
       font-weight: 500;
     }
@@ -48,7 +48,7 @@
     }
 
     .title {
-      font-size: 3.6rem;
+      font-size: 6.048rem;
       font-weight: 500;
       margin-bottom: 30px;
       letter-spacing: 0.05em;
@@ -56,20 +56,20 @@
     }
     
     .subtitle {
-      font-size: 0.95rem;
+      font-size: 1.596rem;
       font-weight: 500;
       letter-spacing: 0.07em;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .date {
-      font-size: 2.7rem;
+      font-size: 4.536rem;
       letter-spacing: 0.08em;
     }
 
     .note {
-      font-size: 0.90rem;
-      margin-top: 20px;
+      font-size: 1.512rem;
+      margin-top: 66px;
       color: #333333;
       transform: scaleY(0.7);
     }
@@ -82,9 +82,9 @@
     }
 
     .qrcode {
-      margin-top: 8px;
-      width: 250px;
-      height: 250px;
+      margin-top: 12px;
+      width: 400px;
+      height: 400px;
     }
   </style>
 </head>
@@ -98,7 +98,7 @@
     <div class="content">
       <div class="title"><%= @ticket.name.upcase %></div>
       <div class="subtitle"><%= @ticket.description.upcase %></div>
-      <div class="date"><%= @ticket.date.strftime("%d DE %b").upcase %></div>
+      <div class="date"><%=I18n.l(@ticket.date, format: "%d DE %B").upcase %></div>
       <div class="footer note"><%= @ticket.footer_description.upcase %></div>
     </div>
   </div>
