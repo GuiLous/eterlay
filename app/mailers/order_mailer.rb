@@ -33,10 +33,16 @@ class OrderMailer < ApplicationMailer
           "--width 500",
           "--height 600",
           "--quality 40",
-          "--enable-local-file-access"
+          "--enable-local-file-access",
+          "--disable-smart-width",
+          "--no-stop-slow-scripts",
+          "--disable-ssl"
         ].join(" ")
 
-        `wkhtmltoimage #{wkhtmltoimage_options} #{tmp_html_path} #{output_path}`
+        wkhtmltoimage_path = Rails.env.production? ? "/app/bin/wkhtmltoimage" : "wkhtmltoimage"
+        command = "#{wkhtmltoimage_path} #{wkhtmltoimage_options} #{tmp_html_path} #{output_path}"
+
+        system(command)
 
         attachments["ingresso.png"] = File.read(output_path)
 
