@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 8.0.0"
 gem "sqlite3", ">= 1.4"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
