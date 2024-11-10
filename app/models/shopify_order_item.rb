@@ -1,5 +1,5 @@
 class ShopifyOrderItem < ApplicationRecord
-  has_one :ticket_code
+  has_many :ticket_codes, dependent: :destroy
 
   validates :order_id, presence: true, uniqueness: true
   validates :product_id, presence: true

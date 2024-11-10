@@ -33,7 +33,11 @@ class OrderItems::ProcessorService
 
   def create_order_item(order_data)
     order_item = ShopifyOrderItem.create!(order_data)
-    TicketCode.create!(shopify_order_item: order_item)
+
+    order_item.quantity.times do
+      TicketCode.create!(shopify_order_item: order_item)
+    end
+
     order_item.reload
   end
 
