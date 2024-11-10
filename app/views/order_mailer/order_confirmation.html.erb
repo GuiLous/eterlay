@@ -37,6 +37,7 @@
       <h1>Obrigado pela sua compra!</h1>
       <p>Seus ingressos para <%= @ticket.name %> foi anexado a este email.</p>
       <p class="note">Lembre-se de apresentar os ingressos em anexo na entrada do evento.</p>
+      <p class="note"><strong>Seus ingressos:</strong> <%= @uuids.join(" | ") %></p>
     </div>
   </div>
 </body>

@@ -14,6 +14,8 @@ class OrderMailer < ApplicationMailer
     banner_path = Rails.root.join("app", "assets", "images", "banner.jpg")
     @banner_data_url = "data:image/jpeg;base64,#{Base64.strict_encode64(File.read(banner_path))}"
 
+    @uuids = @order_item.ticket_codes.pluck(:uuid)
+
     @order_item.ticket_codes.each_with_index do |ticket_code, index|
       begin
         qr_code_image = generate_qr_code_image(ticket_code.uuid)
