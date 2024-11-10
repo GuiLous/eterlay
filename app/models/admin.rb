@@ -17,9 +17,9 @@ class Admin < ApplicationRecord
     JWT.encode({
         id: id,
         email: email,
-        first_name: first_name,
-        last_name: last_name,
-        phone_number: phone_number,
+        firstName: first_name,
+        lastName: last_name,
+        phoneNumber: phone_number,
         role: role,
         exp: 60.days.from_now.to_i
       },

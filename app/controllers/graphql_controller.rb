@@ -59,9 +59,6 @@ class GraphqlController < ApplicationController
 
     begin
       decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base, true, { algorithm: "HS256" })
-      puts "\n\nAqui111"
-      puts "\n\ndecoded_token: #{decoded_token.inspect}"
-      puts "\n\n"
       Admin.find(decoded_token.first["id"])
     rescue JWT::DecodeError
       nil

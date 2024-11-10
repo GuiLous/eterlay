@@ -9,7 +9,7 @@ class OrderItems::ProcessorService
     ActiveRecord::Base.transaction do
       @order_data["line_items"].each do |item|
         order_item = build_order_item(item)
-        created_item = create_order_item(order_item)
+        created_item = OrderItems::CreateService.new(order_item).call
         OrderMailer.order_confirmation(created_item).deliver_now
       end
     end
@@ -27,18 +27,9 @@ class OrderItems::ProcessorService
       price: item["price"],
       customer_email: @order_data["email"],
       customer_name: extract_customer_name(@order_data["customer"]),
-      customer_phone: @order_data.dig("customer", "phone")
+      customer_phone: @order_data.dig("customer", "phone"),
+      manual: false
     }
-  end
-
-  def create_order_item(order_data)
-    order_item = ShopifyOrderItem.create!(order_data)
-
-    order_item.quantity.times do
-      TicketCode.create!(shopify_order_item: order_item)
-    end
-
-    order_item.reload
   end
 
   def extract_customer_name(customer)

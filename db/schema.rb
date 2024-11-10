@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_08_135526) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_10_164152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,9 +69,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_08_135526) do
   end
 
   create_table "shopify_order_items", force: :cascade do |t|
-    t.string "order_id", null: false
-    t.string "product_id", null: false
-    t.string "variant_id", null: false
+    t.string "order_id"
+    t.string "product_id"
+    t.string "variant_id"
     t.string "title", null: false
     t.integer "quantity", null: false
     t.decimal "price", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_08_135526) do
     t.string "customer_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "manual", default: false
     t.index ["created_at"], name: "index_shopify_order_items_on_created_at"
     t.index ["customer_email"], name: "index_shopify_order_items_on_customer_email"
     t.index ["order_id"], name: "index_shopify_order_items_on_order_id", unique: true
